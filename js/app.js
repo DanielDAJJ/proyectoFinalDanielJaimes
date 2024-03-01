@@ -4,18 +4,19 @@ const jugador = prompt("Ingresa el nombre del jugador");
 let cartaSeleccionadaJugador;
 
 const maquina = "Rival";
-let cartasSeleccionadaRival
+let cartaSeleccionadaRival
 
 let victoriasJugador = 0;
 let victoriasMaquina = 0;
 
-let rondas = 5;
+let rondas = 0;
 //************************************* Funciones
 
 alert("Hola " + jugador + " a continuación te enfrentarás en un juego de cartas contra tu " + maquina + ". El objetivo es ganar 3 de 5 rondas en las que deberás escoger entre un conjunto de tres números, una vez hayas seleccionado tu número este se comparará con la carta de tu " + maquina + ". El número mayor ganará");
 
 cartasParaJugador();
 cartasMaquina();
+puntaje();
 
 function generarCartas(min, max) {
     return Math.floor(Math.random()*(max - min + 1) +min);
@@ -40,11 +41,21 @@ function cartasParaJugador() {
     }; // función que valida la elección del usuario y asigna a la variable global cartaSeleccionadaJugador la carta elegida por el jugador
 
 function cartasMaquina() {
-    cartasSeleccionadaRival = generarCartas(1, 13);
-    return alert("Tu " + maquina + " ha seleccionado " + cartasSeleccionadaRival)
-}// función para generar la carta de la máquina y asignarla a la variable global cartasSeleccionadaRival
+    cartaSeleccionadaRival = generarCartas(1, 13);
+    return alert("Tu " + maquina + " ha seleccionado " + cartaSeleccionadaRival)
+}// función para generar la carta de la máquina y asignarla a la variable global cartaSeleccionadaRival
 
-function puntaje(params) {
-    
-}// función para para validar la puntuación de los usuarios
+function puntaje() {
+    if (cartaSeleccionadaJugador < cartaSeleccionadaRival) {
+        victoriasMaquina =+1;
+        console.log("tu " + maquina  + " tiene el puntaje más alto. Haz perdido esta ronda");
+        alert("Ronda " + rondas + " gana tu " + maquina);
+    } else if (cartaSeleccionadaJugador > cartaSeleccionadaRival) {
+        victoriasJugador =+1;
+        console.log(jugador + " tiene el puntaje más alto. Has ganado esta ronda!");
+        alert("Ronda " + rondas + jugador + " ha ganado");
+    } {
+        
+    }
+    }// función para para comparar la puntuación de los usuarios
 
