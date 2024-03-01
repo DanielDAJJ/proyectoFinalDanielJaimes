@@ -54,8 +54,9 @@ function puntaje() {
         victoriasJugador =+1;
         console.log(jugador + " tiene el puntaje más alto. Has ganado esta ronda!");
         alert("Ronda " + rondas + jugador + " ha ganado");
-    } {
-        
+    } else{
+        console.log("Ambos jugadores tienen el mismo puntaje. Es un empate");
+        alert("Ronda " + rondas + " ha sido un empate");
     }
     }// función para para comparar la puntuación de los usuarios
 
