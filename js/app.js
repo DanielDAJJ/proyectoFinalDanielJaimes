@@ -18,6 +18,7 @@ cartasParaJugador();
 cartasMaquina();
 puntaje();
 sumarRondas();
+victoria();
 
 function generarCartas(min, max) {
     return Math.floor(Math.random()*(max - min + 1) +min);
@@ -77,3 +78,14 @@ function sumarRondas() {
     } este bucle funciona pero no evalua las victorias de los jugadores*/
 }//función para sumar las rondas y reiniciar el juego
 
+function victoria() {
+    if (victoriasJugador === 3) {
+        console.log("Has ganado!");
+        alert("¡Felicidades! Has ganado el juego.");
+    } else if (victoriasMaquina === 3) {
+        console.log("tu " + maquina + " te ha superado.");
+        alert("Lo lamento, has perdido el juego.");
+    }else {
+        sumarRondas();
+    }
+}
