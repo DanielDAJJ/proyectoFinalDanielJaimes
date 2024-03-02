@@ -28,7 +28,7 @@ function cartasParaJugador() {
     let carta1 = generarCartas(1, 13);
     let carta2 = generarCartas(1, 13);
     let carta3 = generarCartas(1, 13);
-    let cartaJugador = Number(prompt("Elige una carta: " + carta1 + ", " + carta2 + "o " + carta3));
+    let cartaJugador = Number(prompt("Elige una carta: " + carta1 + ", " + carta2 + " o " + carta3));
     if (cartaJugador == carta1) {
         cartaSeleccionadaJugador = carta1;
     }else if (cartaJugador == carta2) {
