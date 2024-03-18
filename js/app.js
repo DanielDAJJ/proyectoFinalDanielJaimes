@@ -26,7 +26,8 @@ alert("Hola " + jugador + " a continuación te enfrentarás en un juego de carta
 
 manoJugador();
 escogerCartaJugador();
-escogerCartaRival()
+escogerCartaRival();
+puntaje();
 
 //-------- función para crear cartas del jugador y el rival
 
@@ -101,5 +102,20 @@ function escogerCartaRival() {
     return alert ("Tu " + maquina + " ha sacado " + seleccionRival.numero + seleccionRival.palo);
 }//Función para escoger la carta del rival
 
-//-------- Función para sumar victorias
+//-------- Función para sumar victorias y cambiar de ronda
 
+function puntaje() {
+    if (seleccionJugador.numero < seleccionRival.numero) {
+        victoriasMaquina +=1;
+        console.log("tu " + maquina  + " tiene ha escogido una carta más alta. Haz perdido esta ronda");
+        alert("Ronda " + rondas + " gana tu " + maquina);
+    } else if (seleccionJugador.numero > seleccionRival.numero) {
+        victoriasJugador +=1;
+        console.log(jugador + " tiene el puntaje más alto. Has ganado esta ronda!");
+        alert("Ronda " + rondas + " " + jugador + " ha ganado");
+    } else{
+        console.log("Ambos jugadores tienen el mismo puntaje. Es un empate");
+        alert("Ronda " + rondas + " ha sido un empate");
+    }
+    console.log("puntaje jugador " + victoriasJugador + " puntaje rival " + victoriasMaquina);
+    }
