@@ -6,6 +6,9 @@ const cartasJugador = [];
 const maquina = "Rival";
 const cartasRival = [];
 
+let seleccionJugador;
+let seleccionRival;
+
 class cartas {
     constructor (numero, palo) {
         this.numero = numero;
@@ -22,8 +25,9 @@ let rondas = 1;
 alert("Hola " + jugador + " a continuación te enfrentarás en un juego de cartas contra tu " + maquina + ". El objetivo es ganar 3 de 5 rondas en las que deberás escoger entre un conjunto de tres números, una vez hayas seleccionado tu número este se comparará con la carta de tu " + maquina + ". El número mayor ganará");
 
 manoJugador();
+escogerCartaJugador();
 
-// función para crear cartas jugador
+//-------- función para crear cartas del jugador y el rival
 
 function generarNumero(min, max) {
     return Math.floor(Math.random()*(max - min + 1) +min);
@@ -54,3 +58,24 @@ function manoJugador() {
         }
     }
 }//Función para crear nuevas cartas en la mano de los jugadores
+
+//-------- función para seleccionar cartas del jugador
+function escogerCartaJugador() {
+    if (cartasJugador.length == 3) {
+        console.log("Tus cartas son: ");
+        cartasJugador.forEach(cartas => {
+            console.log(cartas)
+        });
+    }
+    let seleccion = Number(prompt("Elige tu carta: " + cartasJugador[0].numero + cartasJugador[0].palo + ", " + cartasJugador[1].numero + cartasJugador[1].palo + ", " + cartasJugador[2].numero + cartasJugador[2].palo));
+    switch (seleccion) {
+        case seleccion === cartasJugador[1].numero:
+            seleccionJugador =  cartasJugador[1];
+            break;
+        case seleccion ===  cartasJugador[2].numero:
+            seleccionJugador = cartasJugador[2];
+            break;
+        default:
+            seleccionJugador =  cartasJugador[0];
+    }
+}
