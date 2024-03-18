@@ -65,12 +65,6 @@ function manoJugador() {
 //-------- función para seleccionar cartas del jugador
 
 function escogerCartaJugador() {
-    if (cartasJugador.length == 3) {
-        console.log("Tus cartas son: ");
-        cartasJugador.forEach(cartas => {
-            console.log(cartas)
-        });
-    }
     let seleccion = Number(prompt("Elige tu carta: " + cartasJugador[0].numero + cartasJugador[0].palo + ", " + cartasJugador[1].numero + cartasJugador[1].palo + ", " + cartasJugador[2].numero + cartasJugador[2].palo));
     if (seleccion == cartasJugador[0].numero){
         seleccionJugador = cartasJugador[0];
