@@ -47,9 +47,10 @@ function generarPalo() {
 function manoJugador() {
     if (cartasJugador.length <= 3 && cartasRival.length <= 3) {
         for (let i = 0; i < 3; i+=1) {
-            const carta = new cartas (generarNumero(1,13), generarPalo());
-            cartasJugador.push(carta);
-            cartasRival.push(carta);
+            const cartaJugador = new cartas (generarNumero(1,13), generarPalo());
+            const cartaRival = new cartas (generarNumero(1,13), generarPalo());
+            cartasJugador.push(cartaJugador);
+            cartasRival.push(cartaRival);
         }
     }
 }//Función para crear nuevas cartas en la mano de los jugadores
