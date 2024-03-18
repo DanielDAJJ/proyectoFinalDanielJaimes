@@ -28,6 +28,7 @@ manoJugador();
 escogerCartaJugador();
 escogerCartaRival();
 puntaje();
+sumarRondas();
 
 //-------- función para crear cartas del jugador y el rival
 
@@ -52,7 +53,7 @@ function generarPalo() {
 }// función para devolver el palo de la carta
 function manoJugador() {
     if (cartasJugador.length <= 3 && cartasRival.length <= 3) {
-        for (let i = 0; i < 3; i+=1) {
+        for (let i = 0; i <= 3; i+=1) {
             const cartaJugador = new cartas (generarNumero(1,13), generarPalo());
             const cartaRival = new cartas (generarNumero(1,13), generarPalo());
             cartasJugador.push(cartaJugador);
@@ -73,10 +74,13 @@ function escogerCartaJugador() {
     let seleccion = Number(prompt("Elige tu carta: " + cartasJugador[0].numero + cartasJugador[0].palo + ", " + cartasJugador[1].numero + cartasJugador[1].palo + ", " + cartasJugador[2].numero + cartasJugador[2].palo));
     if (seleccion == cartasJugador[0].numero){
         seleccionJugador = cartasJugador[0];
+        cartasJugador.splice(0,1);
     } else if (seleccion == cartasJugador[1].numero){
         seleccionJugador = cartasJugador[1];
+        cartasJugador.splice(1,1);
     } else if (seleccion == cartasJugador[2].numero){
         seleccionJugador = cartasJugador[2];
+        cartasJugador.splice(2,1);
     } else {
         alert ("debes seleccionar una opción de carta valida")
         escogerCartaJugador();
@@ -88,16 +92,19 @@ function escogerCartaRival() {
     switch (seleccionR) {
         case 1:
             if (seleccionR == 1) {
-                seleccionRival = cartasRival[0];  
+                seleccionRival = cartasRival[0];
+                cartasRival.splice(0, 1);  
             };
             break;
         case 2:
             if (seleccionR == 2) {
-                seleccionRival = cartasRival[0];  
+                seleccionRival = cartasRival[0];
+                cartasRival.splice(1, 1);  
             };
             break;
         default:
             seleccionRival = cartasRival[2];
+            cartasRival.splice(2, 1);
     }
     return alert ("Tu " + maquina + " ha sacado " + seleccionRival.numero + seleccionRival.palo);
 }//Función para escoger la carta del rival
@@ -118,4 +125,13 @@ function puntaje() {
         alert("Ronda " + rondas + " ha sido un empate");
     }
     console.log("puntaje jugador " + victoriasJugador + " puntaje rival " + victoriasMaquina);
-    }
+};// Función para sumar puntaje
+function sumarRondas() {
+        while (rondas < 5 && victoriasJugador < 3 && victoriasMaquina < 3) {
+            rondas +=1;
+            manoJugador();
+            escogerCartaJugador();
+            escogerCartaRival();
+            puntaje();
+        }
+}//Función para reiniciar las rondas
