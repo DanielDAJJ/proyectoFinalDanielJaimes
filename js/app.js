@@ -100,3 +100,6 @@ function escogerCartaRival() {
     }
     return alert ("Tu " + maquina + " ha sacado " + seleccionRival.numero + seleccionRival.palo);
 }//Función para escoger la carta del rival
+
+//-------- Función para sumar victorias
+
