@@ -26,6 +26,7 @@ alert("Hola " + jugador + " a continuación te enfrentarás en un juego de carta
 
 manoJugador();
 escogerCartaJugador();
+escogerCartaRival()
 
 //-------- función para crear cartas del jugador y el rival
 
@@ -60,6 +61,7 @@ function manoJugador() {
 }//Función para crear nuevas cartas en la mano de los jugadores
 
 //-------- función para seleccionar cartas del jugador
+
 function escogerCartaJugador() {
     if (cartasJugador.length == 3) {
         console.log("Tus cartas son: ");
@@ -68,14 +70,33 @@ function escogerCartaJugador() {
         });
     }
     let seleccion = Number(prompt("Elige tu carta: " + cartasJugador[0].numero + cartasJugador[0].palo + ", " + cartasJugador[1].numero + cartasJugador[1].palo + ", " + cartasJugador[2].numero + cartasJugador[2].palo));
-    switch (seleccion) {
-        case seleccion === cartasJugador[1].numero:
-            seleccionJugador =  cartasJugador[1];
+    if (seleccion == cartasJugador[0].numero){
+        seleccionJugador = cartasJugador[0];
+    } else if (seleccion == cartasJugador[1].numero){
+        seleccionJugador = cartasJugador[1];
+    } else if (seleccion == cartasJugador[2].numero){
+        seleccionJugador = cartasJugador[2];
+    } else {
+        alert ("debes seleccionar una opción de carta valida")
+        escogerCartaJugador();
+    }
+    return alert ("Escogiste la carta: " + seleccionJugador.numero + seleccionJugador.palo);
+}//Función que permite al jugador escoger una carta
+function escogerCartaRival() {
+    let seleccionR = generarNumero(1,3);
+    switch (seleccionR) {
+        case 1:
+            if (seleccionR == 1) {
+                seleccionRival = cartasRival[0];  
+            };
             break;
-        case seleccion ===  cartasJugador[2].numero:
-            seleccionJugador = cartasJugador[2];
+        case 2:
+            if (seleccionR == 2) {
+                seleccionRival = cartasRival[0];  
+            };
             break;
         default:
-            seleccionJugador =  cartasJugador[0];
+            seleccionRival = cartasRival[2];
     }
-}
+    return alert ("Tu " + maquina + " ha sacado " + seleccionRival.numero + seleccionRival.palo);
+}//Función para escoger la carta del rival
