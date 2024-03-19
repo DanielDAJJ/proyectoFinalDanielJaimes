@@ -29,6 +29,7 @@ escogerCartaJugador();
 escogerCartaRival();
 puntaje();
 sumarRondas();
+victoria();
 
 //-------- función para crear cartas del jugador y el rival
 
@@ -60,6 +61,7 @@ function manoJugador() {
             cartasRival.push(cartaRival);
         }
     }
+    console.log(cartasJugador);
 }//Función para crear nuevas cartas en la mano de los jugadores
 
 //-------- función para seleccionar cartas del jugador
@@ -132,3 +134,16 @@ function sumarRondas() {
 
 //-------- Función para ganar el juego
 
+function victoria() {
+    if (victoriasJugador === 3) {
+        console.log("Has ganado!");
+        alert("¡Felicidades! Has ganado el juego.");
+    } else if (victoriasMaquina === 3) {
+        console.log("tu " + maquina + " te ha superado.");
+        alert("Lo lamento, has perdido el juego.");
+    }else {
+        sumarRondas();
+    }
+}
+
+//-------- Función para resolver bugs
