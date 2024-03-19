@@ -129,3 +129,6 @@ function sumarRondas() {
             puntaje();
         }
 }//Función para reiniciar las rondas
+
+//-------- Función para ganar el juego
+
