@@ -4,10 +4,24 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    max-width: 100%;
+    max-height: auto;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
 }
 body{
     margin: 1em 5em;
     background: #f9faf1;
+}
+/* Estilo para las cartas */
+
+.card {
+    background:radial-gradient(ellipse at top,  #EEEDEB, 75%, #E0CCBE);
+    width: 12em;
+    height: 17em;
+    border-radius: 5%;
+    padding: 1em 1.25em;
+    display: grid;
+    grid: repeat(6, 1fr) / repeat(5, 1fr);
+    gap: 0.5em;
 }
