@@ -12,10 +12,6 @@ body{
     margin: 1em 5em;
     background: #f9faf1;
 }
-p {
-    font-size: 1.5em;
-    font-weight: 500;
-}
 /* Estilo para las cartas */
 
 .card {
@@ -34,3 +30,4 @@ p {
     grid-column: 5;
     grid-row: 6;
 }
+.
