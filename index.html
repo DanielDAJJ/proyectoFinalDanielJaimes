@@ -8,19 +8,25 @@
     <title>preEntregaJS-3</title>
 </head>
 <body>
-    <main>
-        <h1>
-            Mano A Mano
-        </h1>
-        <hr>
-        <h2>
-            Daniel Alejandro Jaimes Jiménez
-        </h2>
+    <main class="inicio">
+        <section class="titulo">
+            <h1>Mano A Mano</h1>
+            <button class="nuevaPartida" id="BtnNuevaPartida">Nueva partida</button>
+        </section>
+        <div class="nombre" id="POPNombre">
+            <form action="" class="POPNombre_Form">
+                <p class="POPNombre_Form_Texto">Bienvenido retador, indícame que nombre quieres que use para ti</p>
+                <label for="POPNick">
+                    Nombre:<br>  
+                    <input type="text" id="POPNick" class="POPNombre_Form_Input" placeholder="Escribe tu nombre aquí">
+                </label>
+                <button type="submit" class="POPNombre_BTN">Iniciar partida</button>
+            </form>
+        </div>
     </main>
-    <div class="card">
-        <p class="cardSim">♣</p>
-        <p class="cardTXT">10</p>
-        <p class="cardSim">♣</p>
-    </div>
+    <section class="instrucciones" id="instruccion">
+        <p class="instrucciones_TXT">Hola <span id="NombreJ">Nombre</span>, a continuación te enfrentarás en un juego de cartas contra tu Rival. El objetivo es ganar 3 de 5 rondas en las que deberás escoger entre un conjunto de tres números, una vez hayas seleccionado tu número este se comparará con la carta de tu Rival. El número mayor ganará</p>
+        <button class="instrucciones_BTN" id="instruccionBTN">Estoy listo</button>
+    </section>
 </body>
 </html>
