@@ -184,7 +184,7 @@ body{
 .instrucciones{
     width: 100%;
     height: 90dvh;
-    display: flex;
+    display: none;
     flex-direction: column;
     font-size: 2em;
     font-weight: 300;
@@ -196,16 +196,90 @@ body{
 .instrucciones_BTN{
     width: 162px;
     height: 48px;
-    font-size: 1.25em;
     background-color: #BCA37F;
     border: none;
-    font-size: 1em;
+    font-size: 0.75em;
     border-radius: 5%;
     color: #FFF2D8;
     cursor: pointer;
+    font-weight: 600;
 }
 .instrucciones_BTN:hover{
     background-color: #FFF2D8;
     color: #BCA37F;
     transition: all 0.25s ease-in;
+}
+
+/*********************Sección de tablero****************************/
+
+.tablero{
+    width: 100%;
+    height: 90dvh;
+    display: grid;
+    grid-template-areas:
+    "tablero1 tablero2 tablero2 tablero2 tablero2 tablero2 tablero2 tablero3"
+    "tablero1 tablero2 tablero2 tablero2 tablero2 tablero2 tablero2 tablero3"
+    "tablero1 tablero2 tablero2 tablero2 tablero2 tablero2 tablero2 tablero3";
+    gap: 1em;
+}
+.tablero1{
+    grid-area: tablero1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+}
+.tablero1_Avatar1{
+    width: 6em;
+    height: 6em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.avatar{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    gap: 0.5em;
+}
+.avatar p{
+    width: 50%;
+    height: 5em;
+    display: flex;
+    background-color: #07171d;
+    text-align: center;
+    font-size: 2.5em;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10%;
+}
+.avatar_Victorias{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    gap: 0.5em;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.wins{
+    width: 100%;
+    height: 33%;
+    background-color: #07171d;
+    border-radius: 20%;
+}
+.tablero1_Avatar1 h3{
+    color: #EEEDEB;
+    font-weight: 300;
+}
+.tablero2{
+    grid-area: tablero2;
+    width: 100%;
+    height: 100%;
+}
+.tablero3{
+    grid-area: tablero3;
+    width: 100%;
+    height: 100%;
 }

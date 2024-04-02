@@ -1,6 +1,6 @@
 /* 
 Lista de tareas
-► Generar una pantalla de inicio
+► Generar una pantalla de inicio✔
 ► Una transición entre la pantalla y el juego
     → Sección para mostrar la reglas del juego
 ► Diseñar la visual del juego
