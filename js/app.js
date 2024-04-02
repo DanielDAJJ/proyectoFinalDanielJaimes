@@ -2,8 +2,8 @@
 Lista de tareas
 ► Generar una pantalla de inicio✔
 ► Una transición entre la pantalla y el juego
-    → Sección para mostrar la reglas del juego
-► Diseñar la visual del juego
+    → Sección para mostrar la reglas del juego✔
+► Diseñar la visual del juego✔
 ► Crear la función de generar cartas en el DOM
     → Generar la mano del jugador
     → Generar la mano del Rival
