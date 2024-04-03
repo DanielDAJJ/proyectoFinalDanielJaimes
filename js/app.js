@@ -1,13 +1,13 @@
 /* 
 Lista de tareas
 ► Generar una pantalla de inicio✔
-► Una transición entre la pantalla y el juego
+► Una transición entre la pantalla y el juego ⚠
     → Sección para mostrar la reglas del juego✔
 ► Diseñar la visual del juego✔
-► Crear la función de generar cartas en el DOM
-    → Funcion para hacer aparecer las secciones
-    → Generar la mano del jugador
-    → Generar la mano del Rival
+► Crear la función de generar cartas en el DOM ✔
+    → Funcion para hacer aparecer las secciones✔
+    → Generar la mano del jugador✔
+    → Generar la mano del Rival✔
     → Agregar la función de seleccionar carta del jugador
     → Agregar la función de seleccionar carta del rival
     → Agregar la función para mostrar la selección en pantalla
@@ -32,6 +32,8 @@ let instrucciones = document.querySelector("#instruccion");//Seccion para mostra
 let nombreJugador = document.querySelector("#NombreJ");//variable que guarda el nombre del jugador 
 let btnInstrucciones = document.querySelector("#instruccionBTN");//Boton para continuar despues de leer las instrucciones
 let tablero = document.querySelector("#tablero");//Variable que guarda la seccion del tablero
+let cartasJugador = document.querySelector("#cartasJugador");//Variable que guarda el div de la mano del jugador
+let cartasRival = document.querySelector("#cartasRival");//Div donde se colocaran las cartas del rival
 let nombreJugadorTablero = document.querySelector("#nombreJTablero")
 let pasarTurno = document.querySelector("#pasarTurno");//Boton para pasar turno
 let temporizador = document.querySelector("#temporizador");//Variable que muestra el tiempo 
@@ -62,6 +64,9 @@ btnInstrucciones.addEventListener("click", empezarjuego = () => {
     return mostrarSeccion(tablero, "tablero")
 });//Funcion para iniciar el tablero
 
+crearCartas();
+seleccionarCartajugador();
+
 function validarNombre(e) {
     e.preventDefault();
     if (inputNombre.textLength !== 0) {
@@ -85,62 +90,65 @@ function mostrarNombreJugador() {
     nombreJugador.innerText = localStorage.nombre
 };//Muestra el nombre del jugador
 
-function aleatorierdad(params) {
-    
+function aleatorierdad(min, max) {
+    return Math.floor(Math.random()*(max - min + 1) +min);    
+};//Aleatoriedad
+function generarPalo() {
+    let palo = aleatorierdad(1,4);
+    switch (palo){
+        case 1:
+            return "♥";
+            break
+        case 2:
+            return "♦";
+            break
+        case 3:
+            return "♠";
+            break
+        default:
+            return "♣"
+    }
+}//generar palo para las cartas
+
+/****************************generar cartas en la mano de los jugadores********************************/
+
+function crearCartas() {
+    do {
+        for (let i = 0; i < 3; i+=1) {
+            const cartaJ = new cartas(aleatorierdad(1, 13), generarPalo());
+            const cartaR = new cartas(aleatorierdad(1,13), generarPalo());
+            manoJugador.push(cartaJ);
+            manoRival.push(cartaR);           
+        }
+    } while (manoJugador.length < 3 && manoRival.length < 3);
+    renderizarCartasJ();
+    renderizarCartasR()
+}
+function renderizarCartasJ() {
+    for (const carta of manoJugador) {
+        let mano = document.createElement("button");
+        mano.classList.add("card");
+        mano.setAttribute("id", "carta" + manoJugador.indexOf(carta));
+        mano.innerHTML = `<p class="cardSim">${carta.palo}</p>
+        <p class="cardTXT">${carta.numero}</p>
+        <p class="cardSim">${carta.palo}</p>`;
+    cartasJugador.appendChild(mano);
+    }
+}
+function renderizarCartasR() {
+    for (const carta of manoRival) {
+        let mano = document.createElement("div");
+        mano.classList.add("card_Rival");
+        mano.innerHTML = `<div class="card_RivalBorder"></div>`;
+    cartasRival.appendChild(mano);
+    }
 }
 
-/* 
-<div class="tablero2_cartasRival">
-    <div class="card_Rival">
-        <div class="card_RivalBorder"></div>
-    </div>
-    <div class="card_Rival">
-        <div class="card_RivalBorder"></div>
-    </div>
-    <div class="card_Rival">
-        <div class="card_RivalBorder"></div>
-    </div>
-</div>
-<div class="tablero2_cartasJugador">
-    <div class="card">
-        <p class="cardSim">♥</p>
-        <p class="cardTXT">10</p>
-        <p class="cardSim">♥</p>
-    </div>
-    <div class="card">
-        <p class="cardSim">♥</p>
-        <p class="cardTXT">10</p>
-        <p class="cardSim">♥</p>
-    </div>
-    <div class="card">
-        <p class="cardSim">♥</p>
-        <p class="cardTXT">10</p>
-        <p class="cardSim">♥</p>
-    </div>
-</div>
-<div class="tablero3_historialJugada">
-        <p>🦊</p>
-    </div>
-    <div class="tablero3_historialJugada">
-        <p>🦊</p>
-    </div>
-    <div class="tablero3_historialJugada">
-        <p>🦊</p>
-    </div>
-    <div class="tablero3_historialJugada">
-        <p>🦊</p>
-    </div>
-    <div class="tablero3_historialJugada">
-        <p>🦊</p>
-</div>
-<div class="card_comparacion">
-        <p class="cardSim">♣</p>
-        <p class="cardTXT">10</p>
-        <p class="cardSim">♣</p>
-    </div>
-    <div class="card_comparacion">
-        <p class="cardSim">♥</p>
-        <p class="cardTXT">8</p>
-        <p class="cardSim">♥</p>
-</div>
-*/
+/**********************************Función para seleccionar la carta del jugador*************************************/
+
+function seleccionarCartajugador() {
+    let carta1 = document.querySelector("#carta0");
+    let carta2 = document.querySelector("#carta1");
+    let carta3 = document.querySelector("#carta2");
+    carta1.addEventListener()
+}
