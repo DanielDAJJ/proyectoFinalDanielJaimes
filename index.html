@@ -9,26 +9,25 @@
 </head>
 <body>
     <main class="inicio">
-        <section class="titulo">
+        <section class="titulo" id="pantallaInicio">
             <h1>Mano A Mano</h1>
-            <button class="nuevaPartida" id="BtnNuevaPartida">Nueva partida</button>
+            <button class="nuevaPartida" id="BtnNuevaPartida" type="button">Nueva partida</button>
         </section>
-        <div class="nombre" id="POPNombre">
-            <form class="POPNombre_Form" id="nombreForm">
-                <p class="POPNombre_Form_Texto">Bienvenido retador, indícame que nombre quieres que use para ti</p>
-                <label for="POPNick">
-                    Nombre:<br>  
+        <section class="nulos" id="POPNombre">
+            <div class="nombre">
+                <form class="POPNombre_Form" id="nombreForm">
+                    <p class="POPNombre_Form_Texto">Bienvenido retador, indícame que nombre quieres que use para ti</p>
                     <input type="text" id="POPNick" class="POPNombre_Form_Input" placeholder="Escribe tu nombre aquí">
-                </label>
-                <button type="submit" class="POPNombre_BTN" id="btnNombre" value="enviar">Iniciar partida</button>
-            </form>
-        </div>
+                    <button type="submit" class="POPNombre_BTN" id="btnNombre" value="enviar">Iniciar partida</button>
+                </form>
+            </div>
+        </section>
     </main>
-    <section class="instrucciones" id="instruccion">
+    <section class="nulos" id="instruccion">
         <p class="instrucciones_TXT">Hola <span id="NombreJ">Nombre</span>, a continuación te enfrentarás en un juego de cartas contra tu Rival. El objetivo es ganar 3 de 5 rondas en las que deberás escoger entre un conjunto de tres números, una vez hayas seleccionado tu número este se comparará con la carta de tu Rival. El número mayor ganará</p>
-        <button class="instrucciones_BTN" id="instruccionBTN">Estoy listo</button>
+        <button class="instrucciones_BTN" id="instruccionBTN" type="button">Estoy listo</button>
     </section>
-    <section class="tablero" id="tablero">
+    <section class="nulos" id="tablero">
         <div class="tablero1">
             <div class="tablero1_Avatar1">
                 <div class="avatar">
@@ -50,75 +49,22 @@
                         <div class="wins"></div>
                     </div>
                 </div>
-                <h3>Nombre</h3>
+                <h3 id="nombreJTablero">Nombre</h3>
             </div>
         </div>
         <div class="tablero2">
-            <div class="tablero2_cartasRival">
-                <div class="card_Rival">
-                    <div class="card_RivalBorder"></div>
-                </div>
-                <div class="card_Rival">
-                    <div class="card_RivalBorder"></div>
-                </div>
-                <div class="card_Rival">
-                    <div class="card_RivalBorder"></div>
-                </div>
-            </div>
             <div class="tablero2_temporizador">
                 <span class="tablero2_temporizadorTiempo" id="temporizador">60</span>
-                <button class="tablero2_temporizadorPasar" id="pasarTurno" type="submit" value="enviar">Pasar</button>
-            </div>
-            <div class="tablero2_cartasJugador">
-                <div class="card">
-                    <p class="cardSim">♥</p>
-                    <p class="cardTXT">10</p>
-                    <p class="cardSim">♥</p>
-                </div>
-                <div class="card">
-                    <p class="cardSim">♥</p>
-                    <p class="cardTXT">10</p>
-                    <p class="cardSim">♥</p>
-                </div>
-                <div class="card">
-                    <p class="cardSim">♥</p>
-                    <p class="cardTXT">10</p>
-                    <p class="cardSim">♥</p>
-                </div>
+                <button class="tablero2_temporizadorPasar" id="pasarTurno" type="button" value="enviar">Pasar</button>
             </div>
         </div>
         <div class="tablero3">
             <div class="tablero3_historial">
-                <div class="tablero3_historialJugada">
-                    <p>🦊</p>
-                </div>
-                <div class="tablero3_historialJugada">
-                    <p>🦊</p>
-                </div>
-                <div class="tablero3_historialJugada">
-                    <p>🦊</p>
-                </div>
-                <div class="tablero3_historialJugada">
-                    <p>🦊</p>
-                </div>
-                <div class="tablero3_historialJugada">
-                    <p>🦊</p>
-                </div>
             </div>
         </div>
         <div class="comparacion">
             <h2 class="camparacion_titulo">El Ganador es <span id="ganador"></span></h2>
             <div class="comparacion_cartas">
-                <div class="card_comparacion">
-                    <p class="cardSim">♣</p>
-                    <p class="cardTXT">10</p>
-                    <p class="cardSim">♣</p>
-                </div>
-                <div class="card_comparacion">
-                    <p class="cardSim">♥</p>
-                    <p class="cardTXT">8</p>
-                    <p class="cardSim">♥</p>
-                </div>
             </div>    
         </div>
     </section>

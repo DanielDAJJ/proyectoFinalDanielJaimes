@@ -14,6 +14,9 @@ body{
     margin: 1em 5em;
     background: #113946;
 }
+.nulos{
+    display: none;
+}
 /* Estilo para las cartas */
 
 .card, .card_comparacion{
@@ -149,14 +152,20 @@ body{
 }
 
 /***********Estilo Pop nombre*****************************/
-
+.POP{
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .nombre{
-    display: none;
+    display: block;
     position: absolute;
-    top: 15%;
-    left: 15%;
-    width: 70%;
-    height: 75%;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: auto;
     padding: 2em;
     border-radius: 5%;
     background-color: #BCA37F;
@@ -166,12 +175,12 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 2em;
-    font-size: 1em;
+    gap: 0.5em;
+    font-size: 1.5em;
     font-weight: 400;
 }
 .POPNombre_Form_Input{
-    margin: 2em 0 1em 0;
+    margin: 1em 0 1em 0;
     width: 100%;
     height: 2em;
     background-color: #FFF2D8;
@@ -203,7 +212,7 @@ body{
 .instrucciones{
     width: 100%;
     height: 90dvh;
-    display: none;
+    display: flex;
     flex-direction: column;
     font-size: 2em;
     font-weight: 300;
@@ -234,7 +243,7 @@ body{
 .tablero{
     width: 100%;
     height: auto;
-    display: none;
+    display: grid;
     position: relative;
     grid-template-areas:
     "tablero1 tablero2 tablero2 tablero2 tablero2 tablero2 tablero2 tablero3"
