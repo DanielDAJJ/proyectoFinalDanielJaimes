@@ -85,6 +85,9 @@ function mostrarNombreJugador() {
     nombreJugador.innerText = localStorage.nombre
 };//Muestra el nombre del jugador
 
+function aleatorierdad(params) {
+    
+}
 
 /* 
 <div class="tablero2_cartasRival">
