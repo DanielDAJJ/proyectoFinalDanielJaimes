@@ -14,13 +14,13 @@
             <button class="nuevaPartida" id="BtnNuevaPartida">Nueva partida</button>
         </section>
         <div class="nombre" id="POPNombre">
-            <form action="" class="POPNombre_Form">
+            <form class="POPNombre_Form" id="nombreForm">
                 <p class="POPNombre_Form_Texto">Bienvenido retador, indícame que nombre quieres que use para ti</p>
                 <label for="POPNick">
                     Nombre:<br>  
                     <input type="text" id="POPNick" class="POPNombre_Form_Input" placeholder="Escribe tu nombre aquí">
                 </label>
-                <button type="submit" class="POPNombre_BTN">Iniciar partida</button>
+                <button type="submit" class="POPNombre_BTN" id="btnNombre" value="enviar">Iniciar partida</button>
             </form>
         </div>
     </main>
@@ -66,8 +66,8 @@
                 </div>
             </div>
             <div class="tablero2_temporizador">
-                <span class="tablero2_temporizadorTiempo">60</span>
-                <button class="tablero2_temporizadorPasar">Pasar</button>
+                <span class="tablero2_temporizadorTiempo" id="temporizador">60</span>
+                <button class="tablero2_temporizadorPasar" id="pasarTurno" type="submit" value="enviar">Pasar</button>
             </div>
             <div class="tablero2_cartasJugador">
                 <div class="card">
