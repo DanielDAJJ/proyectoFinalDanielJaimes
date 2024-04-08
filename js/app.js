@@ -47,6 +47,8 @@ class cartas {
         this.palo = palo
     }
 };
+let cartaElegidaJ;
+let cartaElegidaR;
 let rondas
 
 /*************************************************************Funciones**********************************************/
@@ -65,7 +67,8 @@ btnInstrucciones.addEventListener("click", empezarjuego = () => {
 });//Funcion para iniciar el tablero
 
 crearCartas();
-seleccionarCartajugador();
+seleccionarCartaJugador();
+
 
 function validarNombre(e) {
     e.preventDefault();
@@ -146,9 +149,21 @@ function renderizarCartasR() {
 
 /**********************************Función para seleccionar la carta del jugador*************************************/
 
-function seleccionarCartajugador() {
+function seleccionarCartaJugador() {
     let carta1 = document.querySelector("#carta0");
     let carta2 = document.querySelector("#carta1");
     let carta3 = document.querySelector("#carta2");
-    carta1.addEventListener()
+    carta1.addEventListener("click", elegirCarta1 = () => {
+        localStorage.setItem('CartaJ', JSON.stringify(manoJugador[0]));
+        cartaElegidaJ = manoJugador[0];
+    });
+    carta2.addEventListener("click", elegirCarta2 = () => {
+        localStorage.setItem('CartaJ', JSON.stringify(manoJugador[1]));
+        cartaElegidaJ = manoJugador[1];
+    });
+    carta3.addEventListener("click", elegirCarta3 = () => {
+        localStorage.setItem('CartaJ', JSON.stringify(manoJugador[2]));
+        cartaElegidaJ = manoJugador[2];
+    });
+    return cartaElegidaJ;
 }

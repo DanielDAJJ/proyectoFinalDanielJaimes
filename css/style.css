@@ -32,6 +32,10 @@ body{
     justify-items: center;
     align-items: center;
     cursor: pointer;
+    &:focus {
+        outline: solid 0.3em #BCA37F;
+        transform: scale(1.05);
+    }
 }
 .card_Rival{
     background:radial-gradient(ellipse at top,  #EEEDEB, 75%, #E0CCBE);
@@ -80,10 +84,10 @@ body{
 }
 @keyframes border {
     0% {
-        border-top: solid 0.35em #BCA37F;
-        border-right: solid 0.35em #BCA37F;
-        border-bottom: solid 0.35em #BCA37F;
-        border-left: solid 0.35em #BCA37F;
+        border-top: solid 0.5em #BCA37F;
+        border-right: solid 0.5em #BCA37F;
+        border-bottom: solid 0.5em #BCA37F;
+        border-left: solid 0.5em #BCA37F;
         transition-property: border-top, border-right, border-bottom, border-left;
         transition-duration: 30%;
     }
