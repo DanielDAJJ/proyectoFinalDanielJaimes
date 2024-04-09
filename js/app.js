@@ -157,15 +157,15 @@ function seleccionarCartaJugador() {
     let carta2 = document.querySelector("#carta1");
     let carta3 = document.querySelector("#carta2");
     carta1.addEventListener("click", elegirCarta1 = () => {
-        localStorage.setItem('CartaJ', JSON.stringify(manoJugador[0]));
+        localStorage.setItem('cartaJ', JSON.stringify(manoJugador[0]));
         cartaElegidaJ = manoJugador[0];
     });
     carta2.addEventListener("click", elegirCarta2 = () => {
-        localStorage.setItem('CartaJ', JSON.stringify(manoJugador[1]));
+        localStorage.setItem('cartaJ', JSON.stringify(manoJugador[1]));
         cartaElegidaJ = manoJugador[1];
     });
     carta3.addEventListener("click", elegirCarta3 = () => {
-        localStorage.setItem('CartaJ', JSON.stringify(manoJugador[2]));
+        localStorage.setItem('cartaJ', JSON.stringify(manoJugador[2]));
         cartaElegidaJ = manoJugador[2];
     });
 }
@@ -198,27 +198,72 @@ function seleccionarCartaRival() {
 function compararCartas() {
     let comparar = document.querySelector("#comparacion");
     mostrarSeccion(comparar, "comparacion");
+    eliminarCartaJ();
+    eliminarCartaR();
+    generarCartasComparar();
+    compararValores();
+
+}
+function eliminarCartaJ() {
     let carta0 = document.querySelector('#carta0');
     let carta1 = document.querySelector('#carta1');
     let carta2 = document.querySelector('#carta2');
     if (cartaElegidaJ == manoJugador[0]) {
         carta0.remove();
+        manoJugador.splice(0, 1);
     } else if (cartaElegidaJ == manoJugador[1]) {
         carta1.remove();
+        manoJugador.splice(1, 1);
     } else {
         carta2.remove();
+        manoJugador.splice(2, 1);
     };
-    eliminarCartaR();
 }
 function eliminarCartaR() {
     let cartaR0 = document.querySelector('#cartaR0') 
     let cartaR1 = document.querySelector('#cartaR1')
     let cartaR2 = document.querySelector('#cartaR2')
     if (cartaElegidaR == manoRival[0]) {
-        cartaR0.remove() 
+        cartaR0.remove();
+        manoRival.splice(0, 1);
     } else if (cartaElegidaR == manoRival[1]) {
         cartaR1.remove()
+        manoRival.splice(1, 1);
     } else {
         cartaR2.remove()
+        manoRival.splice(2, 1);
     };
 }
+function generarCartasComparar() {
+    let cartaRC =  JSON.parse(localStorage.getItem("cartaR"));
+    let cartaJC = JSON.parse(localStorage.getItem("cartaJ"));
+    let comparacion = document.querySelector(".comparacion_cartas");
+    let crearCartaRC = document.createElement("div");
+    let crearCartaJC = document.createElement("div");
+    crearCartasDOMComparación(crearCartaRC, crearCartaJC, cartaRC, cartaJC);
+    comparacion.appendChild(crearCartaRC);
+    comparacion.appendChild(crearCartaJC);
+};
+function crearCartasDOMComparación(a, b, c, d) {
+    a.setAttribute("class", "card_comparacion");
+    a.setAttribute("id", "cartaRComprar");
+    a.innerHTML = `<p class="cardSim">${c.palo}</p>
+    <p class="cardTXT">${c.numero}</p>
+    <p class="cardSim">${c.palo}</p>`;
+    b.setAttribute("class", "card_comparacion");
+    b.setAttribute("id", "cartaJComprar");
+    b.innerHTML = `<p class="cardSim">${d.palo}</p>
+    <p class="cardTXT">${d.numero}</p>
+    <p class="cardSim">${d.palo}</p>`;
+};
+function compararValores() {
+    let cartaRC =  JSON.parse(localStorage.getItem("cartaR"));
+    let cartaJC = JSON.parse(localStorage.getItem("cartaJ"));
+    if (cartaJC.numero > cartaRC.numero){
+        document.querySelector('#ganador').innerText = localStorage.getItem('nombre');
+    } else if (cartaJC.numero < cartaRC.numero) {
+        document.querySelector("#ganador").innerText = "Tu rival"
+    } else {
+        document.querySelector("#ganador").innerText = "Empate";
+    }
+};
