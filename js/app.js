@@ -143,6 +143,7 @@ function renderizarCartasR() {
     for (const carta of manoRival) {
         let mano = document.createElement("div");
         mano.classList.add("card_Rival");
+        mano.setAttribute("id", "cartaR" + manoRival.indexOf(carta))
         mano.innerHTML = `<div class="card_RivalBorder">
         </div>`;
         cartasRival.appendChild(mano);
@@ -167,7 +168,6 @@ function seleccionarCartaJugador() {
         localStorage.setItem('CartaJ', JSON.stringify(manoJugador[2]));
         cartaElegidaJ = manoJugador[2];
     });
-    return cartaElegidaJ;
 }
 
 function seleccionarCartaRival() {
@@ -201,20 +201,24 @@ function compararCartas() {
     let carta0 = document.querySelector('#carta0');
     let carta1 = document.querySelector('#carta1');
     let carta2 = document.querySelector('#carta2');
-    switch (cartaElegidaJ) {
-        case 1:
-            if (cartaElegidaJ == manoJugador[0]) {
-                carta0.remove();
-            }
-            break;
-        case 2:
-            if (cartaElegidaJ == manoJugador[1]) {
-                carta1.remove();
-            }
-            break
-        default:
-            if (cartaElegidaJ == manoJugador[2]) {
-                carta2.remove();
-            }
-    }
+    if (cartaElegidaJ == manoJugador[0]) {
+        carta0.remove();
+    } else if (cartaElegidaJ == manoJugador[1]) {
+        carta1.remove();
+    } else {
+        carta2.remove();
+    };
+    eliminarCartaR();
+}
+function eliminarCartaR() {
+    let cartaR0 = document.querySelector('#cartaR0') 
+    let cartaR1 = document.querySelector('#cartaR1')
+    let cartaR2 = document.querySelector('#cartaR2')
+    if (cartaElegidaR == manoRival[0]) {
+        cartaR0.remove() 
+    } else if (cartaElegidaR == manoRival[1]) {
+        cartaR1.remove()
+    } else {
+        cartaR2.remove()
+    };
 }
