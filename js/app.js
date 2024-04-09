@@ -65,10 +65,11 @@ btnInstrucciones.addEventListener("click", empezarjuego = () => {
     nombreJugadorTablero.innerText = localStorage.nombre;
     return mostrarSeccion(tablero, "tablero")
 });//Funcion para iniciar el tablero
+pasarTurno.addEventListener("click", compararCartas);//
 
 crearCartas();
 seleccionarCartaJugador();
-
+seleccionarCartaRival();
 
 function validarNombre(e) {
     e.preventDefault();
@@ -142,8 +143,9 @@ function renderizarCartasR() {
     for (const carta of manoRival) {
         let mano = document.createElement("div");
         mano.classList.add("card_Rival");
-        mano.innerHTML = `<div class="card_RivalBorder"></div>`;
-    cartasRival.appendChild(mano);
+        mano.innerHTML = `<div class="card_RivalBorder">
+        </div>`;
+        cartasRival.appendChild(mano);
     }
 }
 
@@ -166,4 +168,53 @@ function seleccionarCartaJugador() {
         cartaElegidaJ = manoJugador[2];
     });
     return cartaElegidaJ;
+}
+
+function seleccionarCartaRival() {
+    let cartaR = aleatorierdad(1,3);
+    switch (cartaR) {
+        case 1:
+            if (cartaR == 1) {
+                localStorage.setItem('cartaR', JSON.stringify(manoRival[0]));
+                cartaElegidaR = manoRival[0];
+            }
+            break;
+        case 2:
+            if (cartaR == 2) {
+                localStorage.setItem('cartaR', JSON.stringify(manoRival[1]));
+                cartaElegidaR = manoRival[1];
+            }
+            break;
+        default:
+            if (cartaR == 3) {
+                localStorage.setItem('cartaR', JSON.stringify(manoRival[2]));
+                cartaElegidaR = manoRival[2];
+            }
+            break;
+    }
+    return cartaElegidaR;
+}
+/*******************************************Comparación de cartas y puntuación************************************/
+function compararCartas() {
+    let comparar = document.querySelector("#comparacion");
+    mostrarSeccion(comparar, "comparacion");
+    let carta0 = document.querySelector('#carta0');
+    let carta1 = document.querySelector('#carta1');
+    let carta2 = document.querySelector('#carta2');
+    switch (cartaElegidaJ) {
+        case 1:
+            if (cartaElegidaJ == manoJugador[0]) {
+                carta0.remove();
+            }
+            break;
+        case 2:
+            if (cartaElegidaJ == manoJugador[1]) {
+                carta1.remove();
+            }
+            break
+        default:
+            if (cartaElegidaJ == manoJugador[2]) {
+                carta2.remove();
+            }
+    }
 }

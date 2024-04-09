@@ -394,7 +394,7 @@ body{
 }
 .comparacion{
     position: absolute;
-    display: none;
+    display: flex;
     gap: 3em;
     flex-direction: column;
     justify-content: center;
