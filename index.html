@@ -24,8 +24,18 @@
         </section>
     </main>
     <section class="nulos" id="instruccion">
-        <p class="instrucciones_TXT">Hola <span id="NombreJ">Nombre</span>, a continuación te enfrentarás en un juego de cartas contra tu Rival. El objetivo es ganar 3 de 5 rondas en las que deberás escoger entre un conjunto de tres números, una vez hayas seleccionado tu número este se comparará con la carta de tu Rival. El número mayor ganará</p>
-        <button class="instrucciones_BTN" id="instruccionBTN" type="button">Estoy listo</button>
+        <p class="instrucciones_TXT">Hola <span id="NombreJ">Nombre</span>, a continuación te enfrentarás en un juego de cartas contra tu Rival. El objetivo es ganar 3 de 5 rondas en las que deberás escoger entre un conjunto de tres cartas, una vez hayas seleccionado tu carta esta se comparará con la carta de tu Rival. El número mayor ganará, Ten en cuenta que: 
+            <ul>
+                <li>el ♥ le resta 1 a ♣</li>
+                <li>el ♣ le resta 1 a ♦</li>
+                <li>el ♦ le resta 1 a ♠</li>
+                <li>el ♠ le resta 1 a ♥</li>
+                <li>el ♦ le sumara dos al ♥</li>
+                <li>el ♠ le sumara dos al ♣</li>
+                <li>El mismo palo no suma ni resta</li>
+            </ul>
+        </p>
+        <button class="instrucciones_BTN" id="instruccionBTN" type="submit">Estoy listo</button>
     </section>
     <section class="nulos" id="tablero">
         <div class="tablero1">
@@ -33,9 +43,9 @@
                 <div class="avatar">
                     <p>🐲</p>
                     <div class="avatar_Victorias">
-                        <div class="wins"></div>
-                        <div class="wins"></div>
-                        <div class="wins"></div>
+                        <div class="wins" id="winsR1"></div>
+                        <div class="wins" id="winsR2"></div>
+                        <div class="wins" id="winsR3"></div>
                     </div>
                 </div>
                 <h3>Rival</h3>
@@ -44,9 +54,9 @@
                 <div class="avatar">
                     <p>🦊</p>
                     <div class="avatar_Victorias">
-                        <div class="wins"></div>
-                        <div class="wins"></div>
-                        <div class="wins"></div>
+                        <div class="wins" id="winsJ1"></div>
+                        <div class="wins" id="winsJ2"></div>
+                        <div class="wins" id="winsJ3"></div>
                     </div>
                 </div>
                 <h3 id="nombreJTablero">Nombre</h3>
@@ -71,7 +81,8 @@
         <div class="nulos" id="comparacion">
             <h2 class="camparacion_titulo">El Ganador es <span id="ganador"></span></h2>
             <div class="comparacion_cartas">
-            </div>    
+            </div>
+            <button type="submit" class="siguienteRondaBTN" id="siguienteRondaBTN">Continuar</button>    
         </div>
     </section>
 </body>

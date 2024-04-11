@@ -36,6 +36,7 @@ let cartasJugador = document.querySelector("#cartasJugador");//Variable que guar
 let cartasRival = document.querySelector("#cartasRival");//Div donde se colocaran las cartas del rival
 let nombreJugadorTablero = document.querySelector("#nombreJTablero")
 let pasarTurno = document.querySelector("#pasarTurno");//Boton para pasar turno
+let siguienteRondaBTN = document.querySelector("#siguienteRondaBTN");//Boton para pasar a la siguiente ronda
 let temporizador = document.querySelector("#temporizador");//Variable que muestra el tiempo 
 let ganador = document.querySelector("#ganador");//Span para poner el nombre del ganador
 
@@ -49,7 +50,7 @@ class cartas {
 };
 let cartaElegidaJ;
 let cartaElegidaR;
-let rondas
+let rondas = 0;
 
 /*************************************************************Funciones**********************************************/
 
@@ -65,7 +66,8 @@ btnInstrucciones.addEventListener("click", empezarjuego = () => {
     nombreJugadorTablero.innerText = localStorage.nombre;
     return mostrarSeccion(tablero, "tablero")
 });//Funcion para iniciar el tablero
-pasarTurno.addEventListener("click", compararCartas);//
+pasarTurno.addEventListener("click", compararCartas);//Función para validar la elección de las cartas y hacer la repectiva comparación
+siguienteRondaBTN.addEventListener("click", siguienteRonda);//Funcion para pasar a la siguiente ronda
 
 crearCartas();
 seleccionarCartaJugador();
@@ -202,7 +204,6 @@ function compararCartas() {
     eliminarCartaR();
     generarCartasComparar();
     compararValores();
-
 }
 function eliminarCartaJ() {
     let carta0 = document.querySelector('#carta0');
@@ -238,20 +239,21 @@ function generarCartasComparar() {
     let cartaRC =  JSON.parse(localStorage.getItem("cartaR"));
     let cartaJC = JSON.parse(localStorage.getItem("cartaJ"));
     let comparacion = document.querySelector(".comparacion_cartas");
+    compararPalos(cartaJC, cartaRC);
     let crearCartaRC = document.createElement("div");
     let crearCartaJC = document.createElement("div");
-    crearCartasDOMComparación(crearCartaRC, crearCartaJC, cartaRC, cartaJC);
-    comparacion.appendChild(crearCartaRC);
+    crearCartasDOMComparación(crearCartaJC, crearCartaRC, cartaJC, cartaRC);
     comparacion.appendChild(crearCartaJC);
+    comparacion.appendChild(crearCartaRC);
 };
 function crearCartasDOMComparación(a, b, c, d) {
     a.setAttribute("class", "card_comparacion");
-    a.setAttribute("id", "cartaRComprar");
+    a.setAttribute("id", "cartaJComprar");
     a.innerHTML = `<p class="cardSim">${c.palo}</p>
     <p class="cardTXT">${c.numero}</p>
     <p class="cardSim">${c.palo}</p>`;
     b.setAttribute("class", "card_comparacion");
-    b.setAttribute("id", "cartaJComprar");
+    b.setAttribute("id", "cartaRComprar");
     b.innerHTML = `<p class="cardSim">${d.palo}</p>
     <p class="cardTXT">${d.numero}</p>
     <p class="cardSim">${d.palo}</p>`;
@@ -260,10 +262,52 @@ function compararValores() {
     let cartaRC =  JSON.parse(localStorage.getItem("cartaR"));
     let cartaJC = JSON.parse(localStorage.getItem("cartaJ"));
     if (cartaJC.numero > cartaRC.numero){
-        document.querySelector('#ganador').innerText = localStorage.getItem('nombre');
+        ganador.innerText = localStorage.getItem('nombre');
     } else if (cartaJC.numero < cartaRC.numero) {
-        document.querySelector("#ganador").innerText = "Tu rival"
+        ganador.innerText = "Tu rival"
     } else {
-        document.querySelector("#ganador").innerText = "Empate";
-    }
+        ganador.innerText = "Empate";
+    };
 };
+function compararPalos(a, b) {
+    if ((a.palo == "♥" && b.palo == "♣") || (a.palo == "♣" && b.palo == "♦") || (a.palo == "♦" && b.palo == "♠") || (a.palo == "♠" && b.palo == "♥")){
+        b.numero -=1;
+    }else if ((a.palo == "♥" && b.palo == "♦") || (a.palo == "♣" && b.palo == "♠")) {
+        a.numero +=2;
+    } else if ((a.palo == "♦" && b.palo == "♥") || (a.palo == "♠" && b.palo == "♣")) {
+        b.numero +=2;
+    } else if ((a.palo == "♥" && b.palo == "♥") || (a.palo == "♣" && b.palo == "♣") || (a.palo == "♦" && b.palo == "♦") || (a.palo == "♠" && b.palo == "♠")) {
+        b.numero;
+        a.numero;
+    } 
+    else {
+        a.numero -=1;
+    };
+};
+/*******************************Pasar a la siguiente ronda ronda**********************************/
+function siguienteRonda() {
+    rondas += 1;
+    sumarVictoria();
+    ocultarSeccion(document.querySelector("#comparacion"), "comparacion");
+    if ((manoJugador.length && manoRival.length) < 3) {
+            const cartaJ = new cartas(aleatorierdad(1, 13), generarPalo());
+            const cartaR = new cartas(aleatorierdad(1,13), generarPalo());
+            manoJugador.push(cartaJ);
+            manoRival.push(cartaR);
+            let nuevaCarta = document.createElement('button');
+    }
+}
+function sumarVictoria() {
+    let puntoJ = document.querySelector(`#winsJ${rondas}`);
+    let puntoR = document.querySelector(`#winsR${rondas}`);
+    if (ganador.innerText == localStorage.getItem("nombre")) {
+        puntoJ.classList.remove("wins");
+        return puntoJ.classList.add("winsOk");
+    } else if (ganador.innerText == "Tu rival") {
+        puntoR.classList.remove("wins");
+        return puntoR.classList.add("winsOk")
+    } else {
+        puntoJ;
+        puntoR;
+    }
+}
