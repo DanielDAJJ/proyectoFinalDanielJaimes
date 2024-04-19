@@ -8,33 +8,34 @@
     <title>preEntregaJS-3</title>
 </head>
 <body>
-    <main class="inicio">
-        <section class="titulo" id="pantallaInicio">
+    <main class="inicio" id="pantallaInicio">
+        <section class="titulo">
             <h1>Mano A Mano</h1>
             <button class="nuevaPartida" id="BtnNuevaPartida" type="button">Nueva partida</button>
         </section>
-        <section class="nulos" id="POPNombre">
-            <div class="nombre">
-                <form class="POPNombre_Form" id="nombreForm">
-                    <p class="POPNombre_Form_Texto">Bienvenido retador, indícame que nombre quieres que use para ti</p>
-                    <input type="text" id="POPNick" class="POPNombre_Form_Input" placeholder="Escribe tu nombre aquí">
-                    <button type="submit" class="POPNombre_BTN" id="btnNombre" value="enviar">Iniciar partida</button>
-                </form>
-            </div>
-        </section>
+        
     </main>
+    <section class="nulos" id="POPNombre">
+        <div class="nombre">
+            <form class="POPNombre_Form" id="nombreForm">
+                <p class="POPNombre_Form_Texto">Bienvenido retador, indícame que nombre quieres que use para ti</p>
+                <input type="text" id="POPNick" class="POPNombre_Form_Input" placeholder="Escribe tu nombre aquí">
+                <button type="submit" class="POPNombre_BTN" id="btnNombre" value="enviar">Iniciar partida</button>
+            </form>
+        </div>
+    </section>
     <section class="nulos" id="instruccion">
         <p class="instrucciones_TXT">Hola <span id="NombreJ">Nombre</span>, a continuación te enfrentarás en un juego de cartas contra tu Rival. El objetivo es ganar 3 de 5 rondas en las que deberás escoger entre un conjunto de tres cartas, una vez hayas seleccionado tu carta esta se comparará con la carta de tu Rival. El número mayor ganará, Ten en cuenta que: 
-            <ul>
-                <li>el ♥ le resta 1 a ♣</li>
-                <li>el ♣ le resta 1 a ♦</li>
-                <li>el ♦ le resta 1 a ♠</li>
-                <li>el ♠ le resta 1 a ♥</li>
-                <li>el ♦ le sumara dos al ♥</li>
-                <li>el ♠ le sumara dos al ♣</li>
-                <li>El mismo palo no suma ni resta</li>
-            </ul>
         </p>
+        <ul>
+            <li>el ♥ le resta 1 a ♣</li>
+            <li>el ♣ le resta 1 a ♦</li>
+            <li>el ♦ le resta 1 a ♠</li>
+            <li>el ♠ le resta 1 a ♥</li>
+            <li>el ♦ le sumara dos al ♥</li>
+            <li>el ♠ le sumara dos al ♣</li>
+            <li>El mismo palo no suma ni resta</li>
+        </ul>
         <button class="instrucciones_BTN" id="instruccionBTN" type="submit">Estoy listo</button>
     </section>
     <section class="nulos" id="tablero">
