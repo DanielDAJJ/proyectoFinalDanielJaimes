@@ -17,13 +17,12 @@ let siguienteRondaBTN = document.querySelector("#siguienteRondaBTN")
 let temporizador = document.querySelector("#temporizador")
 let ganador = document.querySelector("#ganador")
 
-const baraja = [];
 const manoJugador = [];
 const manoRival = [];
 class cartas {
-    constructor(numero, palo){
-        this.numero = numero,
-        this.palo = palo
+    constructor(palo, numero){
+        this.palo = palo,
+        this.numero = numero
     }
 };
 let cartaElegidaJ;
@@ -46,11 +45,11 @@ btnInstrucciones.addEventListener("click", empezarjuego = () => {
 pasarTurno.addEventListener("click", compararCartas)
 siguienteRondaBTN.addEventListener("click", siguienteRonda)
 
+
 /************************Funciones************************/
 
 crearCartas();
-seleccionarCartaJugador();
-seleccionarCartaRival();
+// eliminarExcedenteCartas(manoJugador, manoRival);
 
 function validarNombre(e) {
     e.preventDefault();
@@ -82,39 +81,24 @@ function crearCartas() {
     .then((Response) =>{
         return Response.json();
     })
-    .then((cartas) => {
-        baraja.push(cartas);
-        console.log(cartas);
-    })
-    .catch()
-}
-/* function generarPalo() {
-    let palo = aleatorierdad(1,4);
-    switch (palo){
-        case 1:
-            return "♥";
-            break
-        case 2:
-            return "♦";
-            break
-        case 3:
-            return "♠";
-            break
-        default:
-            return "♣"
-    }
-}
-function crearCartas() {
-    do {
-        for (let i = 0; i < 3; i+=1) {
-            const cartaJ = new cartas(aleatorierdad(1, 13), generarPalo());
-            const cartaR = new cartas(aleatorierdad(1,13), generarPalo());
+    .then((baraja) => {
+        do {
+            const cartaJ = new cartas(baraja.palo[aleatoriedad(0, 3)], baraja.valor[aleatoriedad(0, 12)]);
+            const cartaR = new cartas(baraja.palo[aleatoriedad(0, 3)], baraja.valor[aleatoriedad(0, 12)]);
             manoJugador.push(cartaJ);
-            manoRival.push(cartaR);           
-        }
-    } while (manoJugador.length < 3 && manoRival.length < 3);
-    renderizarCartasJ();
-    renderizarCartasR()
+            manoRival.push(cartaR);
+        } while (manoJugador.length < 3 && manoRival.length < 3);
+        renderizarCartasJ();
+        renderizarCartasR();
+        seleccionarCartaJugador();
+        seleccionarCartaRival();
+    })
+    .catch((error) =>{
+        let MSError = document.createElement("div")
+        document.body.appendChild(MSError);
+        MSError.innerText = "Error al cargar las cartas";
+        MSError.classList.add("error")        
+    });    
 }
 function renderizarCartasJ() {
     for (const carta of manoJugador) {
@@ -136,27 +120,28 @@ function renderizarCartasR() {
         </div>`;
         cartasRival.appendChild(mano);
     }
-} */
+}
 function seleccionarCartaJugador() {
     let carta1 = document.querySelector("#carta0");
     let carta2 = document.querySelector("#carta1");
     let carta3 = document.querySelector("#carta2");
-    carta1.addEventListener("click", elegirCarta1 = () => {
-        localStorage.setItem('cartaJ', JSON.stringify(manoJugador[0]));
+    carta1.addEventListener("click", () => {
+        localStorage.setItem("cartaJ", JSON.stringify(manoJugador[0]));
         cartaElegidaJ = manoJugador[0];
     });
-    carta2.addEventListener("click", elegirCarta2 = () => {
-        localStorage.setItem('cartaJ', JSON.stringify(manoJugador[1]));
+    carta2.addEventListener("click", () => {
+        localStorage.setItem("cartaJ", JSON.stringify(manoJugador[1]));
         cartaElegidaJ = manoJugador[1];
     });
-    carta3.addEventListener("click", elegirCarta3 = () => {
-        localStorage.setItem('cartaJ', JSON.stringify(manoJugador[2]));
+    carta3.addEventListener("click", () => {
+        localStorage.setItem("cartaJ", JSON.stringify(manoJugador[2]));
         cartaElegidaJ = manoJugador[2];
     });
-}
+
+} 
 
 function seleccionarCartaRival() {
-    let cartaR = aleatorierdad(1,3);
+    let cartaR = aleatoriedad(1,3);
     switch (cartaR) {
         case 1:
             if (cartaR == 1) {
@@ -249,7 +234,7 @@ function compararValores() {
     } else if (cartaJC.numero < cartaRC.numero) {
         ganador.innerText = "Tu rival"
     } else {
-        ganador.innerText = "Empate";
+        document.querySelector(".camparacion_titulo").innerHTML = `Esta Ronda es un empate <span id="ganador"></span>`;
     };
 };
 function compararPalos(a, b) {
@@ -272,14 +257,9 @@ function siguienteRonda() {
     rondas += 1;
     sumarVictoria();
     ocultarSeccion(document.querySelector("#comparacion"), "comparacion");
-    if ((manoJugador.length && manoRival.length) < 3) {
-            const cartaJ = new cartas(aleatorierdad(1, 13), generarPalo());
-            const cartaR = new cartas(aleatorierdad(1,13), generarPalo());
-            manoJugador.push(cartaJ);
-            manoRival.push(cartaR);
-            let nuevaCarta = document.createElement('button');
-    }
-}
+    // crearCartas()
+    eliminarExcedenteCartas(manoJugador, manoRival)
+};
 function sumarVictoria() {
     let puntoJ = document.querySelector(`#winsJ${rondas}`);
     let puntoR = document.querySelector(`#winsR${rondas}`);
@@ -293,4 +273,11 @@ function sumarVictoria() {
         puntoJ;
         puntoR;
     }
+};
+function eliminarExcedenteCartas(a, b) {
+    do {
+        a.splice(4, a.indexOf(a))
+        b.splice(4, b.indexOf(b))
+    } while (a.length > 3 && b.length > 3);
+    crearCartas();
 }
