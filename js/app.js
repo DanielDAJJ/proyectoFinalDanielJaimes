@@ -49,7 +49,7 @@ siguienteRondaBTN.addEventListener("click", siguienteRonda)
 /************************Funciones************************/
 
 crearCartas();
-// eliminarExcedenteCartas(manoJugador, manoRival);
+
 
 function validarNombre(e) {
     e.preventDefault();
@@ -92,6 +92,7 @@ function crearCartas() {
         renderizarCartasR();
         seleccionarCartaJugador();
         seleccionarCartaRival();
+
     })
     .catch((error) =>{
         let MSError = document.createElement("div")
@@ -179,11 +180,17 @@ function eliminarCartaJ() {
     let carta2 = document.querySelector('#carta2');
     if (cartaElegidaJ == manoJugador[0]) {
         carta0.remove();
+        carta1.remove();
+        carta2.remove();
         manoJugador.splice(0, 1);
     } else if (cartaElegidaJ == manoJugador[1]) {
+        carta0.remove();
         carta1.remove();
+        carta2.remove();
         manoJugador.splice(1, 1);
     } else {
+        carta0.remove();
+        carta1.remove();
         carta2.remove();
         manoJugador.splice(2, 1);
     };
@@ -194,12 +201,18 @@ function eliminarCartaR() {
     let cartaR2 = document.querySelector('#cartaR2')
     if (cartaElegidaR == manoRival[0]) {
         cartaR0.remove();
+        cartaR1.remove();
+        cartaR2.remove();
         manoRival.splice(0, 1);
     } else if (cartaElegidaR == manoRival[1]) {
-        cartaR1.remove()
+        cartaR0.remove();
+        cartaR1.remove();
+        cartaR2.remove();
         manoRival.splice(1, 1);
     } else {
-        cartaR2.remove()
+        cartaR0.remove();
+        cartaR1.remove();
+        cartaR2.remove();
         manoRival.splice(2, 1);
     };
 }
@@ -257,8 +270,8 @@ function siguienteRonda() {
     rondas += 1;
     sumarVictoria();
     ocultarSeccion(document.querySelector("#comparacion"), "comparacion");
-    // crearCartas()
-    eliminarExcedenteCartas(manoJugador, manoRival)
+    eliminarExcedenteCartas(manoJugador, manoRival);
+    crearCartas();
 };
 function sumarVictoria() {
     let puntoJ = document.querySelector(`#winsJ${rondas}`);
@@ -279,5 +292,4 @@ function eliminarExcedenteCartas(a, b) {
         a.splice(4, a.indexOf(a))
         b.splice(4, b.indexOf(b))
     } while (a.length > 3 && b.length > 3);
-    crearCartas();
 }
