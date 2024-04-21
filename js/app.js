@@ -53,6 +53,7 @@ reiniciar.addEventListener("click", reiniciarJuego = () => {
     reiniciarRondasGanadas();
     ocultarSeccion(pantallaVictoria, "victoria");
     mostrarSeccion(tablero, "tablero");
+    
 })
 /************************Funciones************************/
 
