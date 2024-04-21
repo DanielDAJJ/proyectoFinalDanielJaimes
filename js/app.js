@@ -16,6 +16,8 @@ let pasarTurno = document.querySelector("#pasarTurno")
 let siguienteRondaBTN = document.querySelector("#siguienteRondaBTN")
 let temporizador = document.querySelector("#temporizador")
 let ganador = document.querySelector("#ganador")
+let pantallaVictoria = document.querySelector("#victoria");
+let reiniciar = document.querySelector("#BTNReiniciarJuego")
 
 const manoJugador = [];
 const manoRival = [];
@@ -36,9 +38,7 @@ btnNuevaPartida.addEventListener("click", mostrarPopNombre =() => {
     ocultarSeccion(pantallaInicio, "inicio");
     return mostrarSeccion(nombre, "POP")
 })
-
 nombreForm.addEventListener("submit", validarNombre)
-
 btnInstrucciones.addEventListener("click", empezarjuego = () => {
     ocultarSeccion(instrucciones, "instrucciones");
     nombreJugadorTablero.innerText = localStorage.nombre;
@@ -46,8 +46,14 @@ btnInstrucciones.addEventListener("click", empezarjuego = () => {
 })
 pasarTurno.addEventListener("click", compararCartas)
 siguienteRondaBTN.addEventListener("click", siguienteRonda)
-
-
+reiniciar.addEventListener("click", reiniciarJuego = () => {
+    rondas = 0;
+    victoraJugador = 0;
+    victoriaRival = 0;
+    reiniciarRondasGanadas();
+    ocultarSeccion(pantallaVictoria, "victoria");
+    mostrarSeccion(tablero, "tablero");
+})
 /************************Funciones************************/
 
 crearCartas();
@@ -250,7 +256,7 @@ function compararValores() {
     } else if (cartaJC.numero < cartaRC.numero) {
         ganador.innerText = "Tu rival"
     } else {
-        document.querySelector(".camparacion_titulo").innerHTML = `Esta Ronda es un empate <span id="ganador"></span>`;
+        ganador.innerText = "Empate"
     };
 };
 function compararPalos(a, b) {
@@ -272,6 +278,7 @@ function compararPalos(a, b) {
 function siguienteRonda() {
     rondas += 1;
     sumarVictoria();
+    finalPartida(victoraJugador, victoriaRival);
     document.querySelector("#cartaJComprar").remove()
     document.querySelector("#cartaRComprar").remove()
     ocultarSeccion(document.querySelector("#comparacion"), "comparacion");
@@ -279,14 +286,16 @@ function siguienteRonda() {
     crearCartas();
 };
 function sumarVictoria() {
-    let puntoJ = document.querySelector(`#winsJ${rondas}`);
-    let puntoR = document.querySelector(`#winsR${rondas}`);
+    let puntoJ = document.querySelector(".wins");
+    let puntoR = document.querySelector(".winsR"); 
     if (ganador.innerText == localStorage.getItem("nombre")) {
-        puntoJ.classList.remove("wins");
-        return puntoJ.classList.add("winsOk");
+        victoraJugador += 1;
+        puntoJ.classList.add("winsOk");
+        return puntoJ.classList.remove("wins");
     } else if (ganador.innerText == "Tu rival") {
-        puntoR.classList.remove("wins");
-        return puntoR.classList.add("winsOk")
+        victoriaRival += 1;
+        puntoR.classList.add("winsOk");
+        return puntoR.classList.remove("winsR");
     } else {
         puntoJ;
         puntoR;
@@ -297,4 +306,36 @@ function eliminarExcedenteCartas(a, b) {
         a.splice(4, a.indexOf(a))
         b.splice(4, b.indexOf(b))
     } while (a.length > 3 && b.length > 3);
+};
+function finalPartida(a, b) {
+    if (a == 3 || b == 3) {
+        ocultarSeccion(tablero, "tablero")
+        mostrarSeccion(pantallaVictoria, "victoria")
+        a == 3 ? document.querySelector("#ganadorF").innerText = localStorage.getItem("nombre") : document.querySelector("#ganadorF").innerText = "Tu rival";
+    } else if (rondas == 5) {
+        ocultarSeccion(tablero, "tablero")
+        mostrarSeccion(pantallaVictoria, "victoria")
+        a > b ? document.querySelector("#ganadorF").innerText = localStorage.getItem("nombre") : document.querySelector("#ganadorF").innerText = "Tu rival";
+    }
+}
+function reiniciarRondasGanadas() {
+    let puntoJ1 = document.querySelector("#winsJ1");
+    let puntoJ2 = document.querySelector("#winsJ2");
+    let puntoJ3 = document.querySelector("#winsJ3");
+    let puntoR1 = document.querySelector("#winsR1");
+    let puntoR2 = document.querySelector("#winsR2");
+    let puntoR3 = document.querySelector("#winsR3");
+
+    puntoJ1.classList.remove("winsOk");
+    puntoJ2.classList.remove("winsOk");
+    puntoJ3.classList.remove("winsOk");
+    puntoR1.classList.remove("winsOk");
+    puntoR2.classList.remove("winsOk");
+    puntoR3.classList.remove("winsOk");
+    puntoJ1.classList.add("wins");
+    puntoJ2.classList.add("wins");
+    puntoJ3.classList.add("wins");
+    puntoR1.classList.add("winsR");
+    puntoR2.classList.add("winsR");
+    puntoR3.classList.add("winsR");
 }

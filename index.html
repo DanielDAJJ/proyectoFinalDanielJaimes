@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@mojs/core" defer></script>
     <script src="js/app.js" defer></script>
     <title>preEntregaJS-3</title>
 </head>
@@ -44,9 +45,9 @@
                 <div class="avatar">
                     <p>🐲</p>
                     <div class="avatar_Victorias">
-                        <div class="wins" id="winsR1"></div>
-                        <div class="wins" id="winsR2"></div>
-                        <div class="wins" id="winsR3"></div>
+                        <div class="winsR" id="winsR1"></div>
+                        <div class="winsR" id="winsR2"></div>
+                        <div class="winsR" id="winsR3"></div>
                     </div>
                 </div>
                 <h3>Rival</h3>
@@ -85,6 +86,12 @@
             </div>
             <button type="submit" class="siguienteRondaBTN" id="siguienteRondaBTN">Continuar</button>    
         </div>
+    </section>
+    <section id="victoria" class="nulos">
+        <div>
+            <h2>El ganador de la partida es: <span id = "ganadorF"></span></h2>
+        </div>
+        <div><button id="BTNReiniciarJuego" class="tablero2_temporizadorPasar" type="submit" >Reiniciar</button></div>
     </section>
 </body>
 </html>
