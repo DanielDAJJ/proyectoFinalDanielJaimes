@@ -28,6 +28,8 @@ class cartas {
 let cartaElegidaJ;
 let cartaElegidaR;
 let rondas = 0;
+let victoraJugador = 0;
+let victoriaRival = 0;
 
 /*************************Eventos*************************/
 btnNuevaPartida.addEventListener("click", mostrarPopNombre =() => {
@@ -242,6 +244,7 @@ function crearCartasDOMComparación(a, b, c, d) {
 function compararValores() {
     let cartaRC =  JSON.parse(localStorage.getItem("cartaR"));
     let cartaJC = JSON.parse(localStorage.getItem("cartaJ"));
+    compararPalos(cartaJC, cartaRC);
     if (cartaJC.numero > cartaRC.numero){
         ganador.innerText = localStorage.getItem('nombre');
     } else if (cartaJC.numero < cartaRC.numero) {
@@ -269,6 +272,8 @@ function compararPalos(a, b) {
 function siguienteRonda() {
     rondas += 1;
     sumarVictoria();
+    document.querySelector("#cartaJComprar").remove()
+    document.querySelector("#cartaRComprar").remove()
     ocultarSeccion(document.querySelector("#comparacion"), "comparacion");
     eliminarExcedenteCartas(manoJugador, manoRival);
     crearCartas();
