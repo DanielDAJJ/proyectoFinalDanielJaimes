@@ -36,13 +36,15 @@ let victoriaRival = 0;
 /*************************Eventos*************************/
 btnNuevaPartida.addEventListener("click", mostrarPopNombre =() => {
     ocultarSeccion(pantallaInicio, "inicio");
-    return mostrarSeccion(nombre, "POP")
+    animacionEntradaSec('.nombre')
+    return mostrarSeccion(nombre, "POP");
 })
 nombreForm.addEventListener("submit", validarNombre)
 btnInstrucciones.addEventListener("click", empezarjuego = () => {
     ocultarSeccion(instrucciones, "instrucciones");
     nombreJugadorTablero.innerText = localStorage.nombre;
-    return mostrarSeccion(tablero, "tablero")
+    animacionEntradaSec(tablero);
+    return mostrarSeccion(tablero, "tablero");
 })
 pasarTurno.addEventListener("click", compararCartas)
 siguienteRondaBTN.addEventListener("click", siguienteRonda)
@@ -53,12 +55,11 @@ reiniciar.addEventListener("click", reiniciarJuego = () => {
     reiniciarRondasGanadas();
     ocultarSeccion(pantallaVictoria, "victoria");
     mostrarSeccion(tablero, "tablero");
-    
+    reiniciar.addEventListener("click", animation.play)
 })
 /************************Funciones************************/
-
+animacionEntradaSec('.titulo');
 crearCartas();
-
 
 function validarNombre(e) {
     e.preventDefault();
@@ -66,6 +67,7 @@ function validarNombre(e) {
         localStorage.setItem('nombre', inputNombre.value);
         ocultarSeccion(nombre, "POP");
         mostrarNombreJugador();
+        animacionEntradaSec(instrucciones)
         return mostrarSeccion(instrucciones, "instrucciones")
     }else {
         inputNombre.placeholder = "Debes eligir un nombre";
@@ -101,7 +103,6 @@ function crearCartas() {
         renderizarCartasR();
         seleccionarCartaJugador();
         seleccionarCartaRival();
-
     })
     .catch((error) =>{
         let MSError = document.createElement("div")
@@ -118,8 +119,9 @@ function renderizarCartasJ() {
         mano.innerHTML = `<p class="cardSim">${carta.palo}</p>
         <p class="cardTXT">${carta.numero}</p>
         <p class="cardSim">${carta.palo}</p>`;
-    cartasJugador.appendChild(mano);
-    }
+        cartasJugador.appendChild(mano);
+    };
+    animarCartas()
 }
 function renderizarCartasR() {
     for (const carta of manoRival) {
@@ -339,4 +341,13 @@ function reiniciarRondasGanadas() {
     puntoR1.classList.add("winsR");
     puntoR2.classList.add("winsR");
     puntoR3.classList.add("winsR");
+}
+function animacionEntradaSec(a) {
+    anime({
+        targets: a,
+        scale: [1.5, 1],
+        opacity: [0, 100],
+        delay: 100,
+        duration: 500,
+    })
 }
