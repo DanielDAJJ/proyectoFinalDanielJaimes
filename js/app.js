@@ -183,6 +183,7 @@ function compararCartas() {
     eliminarCartaR();
     generarCartasComparar();
     compararValores();
+    animacionEntradaSec(comparar);
 }
 function eliminarCartaJ() {
     let carta0 = document.querySelector('#carta0');
