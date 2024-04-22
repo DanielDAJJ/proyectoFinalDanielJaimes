@@ -121,7 +121,6 @@ function renderizarCartasJ() {
         <p class="cardSim">${carta.palo}</p>`;
         cartasJugador.appendChild(mano);
     };
-    animarCartas()
 }
 function renderizarCartasR() {
     for (const carta of manoRival) {
